@@ -1,0 +1,14 @@
+# The name below MUST match the 'profile:' name inside your dbt_project.yml
+my_dummy_profile:
+  outputs:
+    dev:
+      type: postgres
+      host: 10.150.60.26          # DataWarehouse IP
+      user: postgres      # your database username
+      password: "{{ env_var('DWH_POSTGRES_PASSWORD') }}"  # your database password
+      port: 5432               # default is 5432
+      dbname: dwh    # the name of your database
+      schema: dummy_dbt_schema      # the schema where you want dbt to build tables (e.g., public or dbt_analytics)
+      threads: 16              # how many models to run in parallel
+
+  target: dev
